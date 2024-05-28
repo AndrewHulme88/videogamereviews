@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Video Game Review App</title>
+  <style>
+    /* Add some basic styling to make the app look better */
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .review-form {
+      margin-bottom: 20px;
+    }
+    .review-container {
+      margin-bottom: 20px;
+    }
+    .review {
+      margin-bottom: 10px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .review-rating {
+      font-weight: bold;
+    }
+    .average-rating {
+      font-size: 24px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Video Game Review App</h1>
+  <form class="review-form">
+    <label for="game-title">Game Title:</label>
+    <input type="text" id="game-title" required>
+    <br>
+    <label for="review-rating">Rating (1-5):</label>
+    <input type="number" id="review-rating" min="1" max="5" required>
+    <br>
+    <label for="review-text">Review:</label>
+    <textarea id="review-text" required></textarea>
+    <br>
+    <button type="submit">Submit Review</button>
+  </form>
+  <div class="review-container"></div>
+  <div class="average-rating-container">
+    <p>Average Rating: <span class="average-rating">0</span></p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
