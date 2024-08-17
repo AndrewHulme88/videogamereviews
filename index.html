@@ -2,16 +2,13 @@
 <html>
 <head>
   <title>Video Game Review App</title>
-  <!-- Link to Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <!-- Link to your custom CSS file -->
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="container">
     <h1 class="text-center">Video Game Review App</h1>
 
-    <!-- Login Form -->
     <div class="row">
       <div class="col-md-6 offset-md-3">
         <form class="login-form">
@@ -29,7 +26,6 @@
       </div>
     </div>
 
-    <!-- Review Form -->
     <div class="row">
       <div class="col-md-6 offset-md-3">
         <form class="review-form">
@@ -52,7 +48,6 @@
       </div>
     </div>
 
-    <!-- Review Container -->
     <div class="row">
       <div class="col-md-6 offset-md-3">
         <h2 class="text-center">Reviews</h2>
@@ -60,7 +55,6 @@
       </div>
     </div>
 
-    <!-- Average Rating Container -->
     <div class="row">
       <div class="col-md-6 offset-md-3">
         <h2 class="text-center">Average Rating</h2>
@@ -69,7 +63,55 @@
     </div>
   </div>
 
-  <!-- Link to your custom JavaScript file -->
-  <script src="scripts.js"></script>
+  <script>
+const reviewForm = document.querySelector('.review-form');
+const reviewContainer = document.querySelector('.review-container');
+const averageRatingElement = document.querySelector('.average-rating');
+
+let reviews = [];
+
+reviewForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  const gameTitle = document.getElementById('game-title').value;
+  const rating = parseInt(document.getElementById('review-rating').value);
+  const reviewText = document.getElementById('review-text').value;
+
+  const review = {
+    gameTitle,
+    rating,
+    reviewText,
+  };
+
+  reviews.push(review);
+
+  displayReview(review);
+
+  calculateAverageRating();
+
+  reviewForm.reset();
+});
+
+function displayReview(review) {
+  const reviewElement = document.createElement('div');
+  reviewElement.classList.add('review');
+
+  const reviewContent = `
+    <h2>${review.gameTitle}</h2>
+    <p class="review-rating">Rating: ${review.rating}/5</p>
+    <p>${review.reviewText}</p>
+  `;
+
+  reviewElement.innerHTML = reviewContent;
+
+  reviewContainer.appendChild(reviewElement);
+}
+
+function calculateAverageRating() {
+  const averageRating = reviews.reduce((acc, review) => acc + review.rating, 0) / reviews.length;
+
+  averageRatingElement.textContent = averageRating.toFixed(2);
+}
+  </script>
 </body>
 </html>
